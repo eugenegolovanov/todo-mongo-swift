@@ -12,6 +12,7 @@
 		44E93C111D382AFF004AE96C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44E93C0F1D382AFF004AE96C /* Main.storyboard */; };
 		44E93C131D382AFF004AE96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44E93C121D382AFF004AE96C /* Assets.xcassets */; };
 		44E93C161D382AFF004AE96C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44E93C141D382AFF004AE96C /* LaunchScreen.storyboard */; };
+		44E93C1E1D382B1B004AE96C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E93C1D1D382B1B004AE96C /* LoginVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		44E93C121D382AFF004AE96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44E93C151D382AFF004AE96C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44E93C171D382AFF004AE96C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44E93C1D1D382B1B004AE96C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				44E93C0B1D382AFF004AE96C /* AppDelegate.swift */,
 				44E93C0D1D382AFF004AE96C /* ViewController.swift */,
+				44E93C1D1D382B1B004AE96C /* LoginVC.swift */,
 				44E93C0F1D382AFF004AE96C /* Main.storyboard */,
 				44E93C121D382AFF004AE96C /* Assets.xcassets */,
 				44E93C141D382AFF004AE96C /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				44E93C0E1D382AFF004AE96C /* ViewController.swift in Sources */,
 				44E93C0C1D382AFF004AE96C /* AppDelegate.swift in Sources */,
+				44E93C1E1D382B1B004AE96C /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
