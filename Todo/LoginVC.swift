@@ -32,7 +32,6 @@ class LoginVC: UIViewController {
     //MARK: - Actions
     
     @IBAction func onSegmentControl(sender: UISegmentedControl) {
-//            print("\(sender.selectedSegmentIndex)")
         
         if sender.selectedSegmentIndex == 0 {
             loginButton.setTitle("Login", forState: .Normal)
@@ -41,25 +40,13 @@ class LoginVC: UIViewController {
             loginButton.setTitle("Signup", forState: .Normal)
 
         }
-        
-        
     }
     
+    
+    
+    
+    
     @IBAction func onLoginButton(sender: UIButton) {
-        
-        let api = "https://egtodo.herokuapp.com"
-//        let api = "https://localhost:3000"
-
-        let todos = "/todos"
-        let login = "/users/login"
-        let signup = "/users"
-        
-        var url = api
-
-
-        
-        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IlUyRnNkR1ZrWDE5YmxrOVN6b1NENHQ2azJxd3Jqc29LMFIydG1GQ0tDNFFKVlN0d0VXeDFQUmZFM2xVRTdJVXMxcTdSc3ZWM0VuNlhKQ0JXYjdxRFhRPT0iLCJpYXQiOjE0Njg2MjYxMTh9.2cf2Np-b28630XRp_WPYFwsqor6_bG4gDyd4anTz5Mg"
-        
         
         guard let emailStr    = self.emailField.text else {print("No Email"); return}
         guard let passwordStr = self.passwordField.text else {print("No Password"); return}
@@ -67,51 +54,58 @@ class LoginVC: UIViewController {
         let paramsDictionary = ["email":emailStr, "password":passwordStr]
         
         
-        
-        
         if sender.titleLabel?.text == "Login" {
             print("Perform LOGIN")
-            url = api + login
-            print("--URL:--  \(url)")
+            print("--URL:--  \(URL_LOGIN)")
             
             
-            //-LOGIN-//
-            API.post(url, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
+            ////-LOGIN-////
+            API.post(URL_LOGIN, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
                 
                 print("----------------------------------------------------------------------------------")
                 if let token = response.dataString {
                     print("token: \(token)")
+                    
+                    saveToken(token: token)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
                 }
                 print("----------------------------------------------------------------------------------")
 
             })
-            //-END OF LOGIN-//
-        
-            
-            
-            
-            
-            
-            
+            ////-END OF LOGIN-////
             
         }
         else if sender.titleLabel?.text == "Signup"{
             print("Perform Signup")
-            url = api + signup
-            print("--URL:--  \(url)")
+            print("--URL:--  \(URL_SIGNUP)")
             
             
-            
-            
-            //-SIGNUP-//
-            API.post(url, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
+            ////-SIGNUP-////
+            API.post(URL_SIGNUP, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
                 
                 print("----------------------------------------------------------------------------------")
                 print(response)
                 print("----------------------------------------------------------------------------------")
                 
+                
+                if response.success == true {
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
+                        
+                        let alert = UIAlertController(
+                            title: "Success",
+                            message: "Signed Up Succesfully",
+                            preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    })
+
+                }
+                
             })
-            //-END OF SIGNUP-//
+            ////-END OF SIGNUP-////
             
             
             
