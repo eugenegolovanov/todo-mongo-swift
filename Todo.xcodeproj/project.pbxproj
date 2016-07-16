@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441A8EED1D38A9E3002789E2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A8EEC1D38A9E3002789E2 /* API.swift */; };
 		44E93C0C1D382AFF004AE96C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E93C0B1D382AFF004AE96C /* AppDelegate.swift */; };
 		44E93C0E1D382AFF004AE96C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E93C0D1D382AFF004AE96C /* ViewController.swift */; };
 		44E93C111D382AFF004AE96C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44E93C0F1D382AFF004AE96C /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		441A8EEC1D38A9E3002789E2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		44E93C081D382AFF004AE96C /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E93C0B1D382AFF004AE96C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44E93C0D1D382AFF004AE96C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,8 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				44E93C0B1D382AFF004AE96C /* AppDelegate.swift */,
-				44E93C0D1D382AFF004AE96C /* ViewController.swift */,
 				44E93C1D1D382B1B004AE96C /* LoginVC.swift */,
+				44E93C0D1D382AFF004AE96C /* ViewController.swift */,
+				441A8EEC1D38A9E3002789E2 /* API.swift */,
 				44E93C0F1D382AFF004AE96C /* Main.storyboard */,
 				44E93C121D382AFF004AE96C /* Assets.xcassets */,
 				44E93C141D382AFF004AE96C /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				44E93C0E1D382AFF004AE96C /* ViewController.swift in Sources */,
 				44E93C0C1D382AFF004AE96C /* AppDelegate.swift in Sources */,
+				441A8EED1D38A9E3002789E2 /* API.swift in Sources */,
 				44E93C1E1D382B1B004AE96C /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +294,7 @@
 				44E93C1C1D382AFF004AE96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
