@@ -37,7 +37,6 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
             print("Token:\n\(token)")
-            spinner.startAnimating()
             self.getAllTodosResponse()
         } else {
             performSegueWithIdentifier("loginSegue", sender: self)
@@ -52,6 +51,9 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: - Responses
     
     func getAllTodosResponse() {
+        spinner.startAnimating()
+
+        
         ////GET Todos////
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
             API.get(URL_TODOS, attachToken: true, alternateToken: token, completed: { (response) in
@@ -79,6 +81,15 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.spinner.stopAnimating()
                     })
                     
+                } else {
+                    self.spinner.stopAnimating()
+                    let alert = UIAlertController(
+                        title: "Failure",
+                        message: "Response code:\(response.code)",
+                        preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+
                 }
             })
             
