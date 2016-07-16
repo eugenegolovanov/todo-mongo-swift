@@ -95,7 +95,25 @@
                     <view key="view" contentMode="scaleToFill" id="qmW-tf-B18">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz6-ay-rTx">
+                                <rect key="frame" x="89" y="521" width="143" height="39"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="57G-S5-SmT"/>
+                                    <constraint firstAttribute="height" constant="39" id="UTZ-a3-l0m"/>
+                                </constraints>
+                                <state key="normal" title="Get All Todos"/>
+                                <connections>
+                                    <action selector="onGetAllTodos:" destination="YAl-ge-G88" eventType="touchUpInside" id="u3D-aQ-4yA"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.28370147943496704" green="0.43650698661804199" blue="0.5625152587890625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="u9a-jb-qyg" firstAttribute="top" secondItem="Mz6-ay-rTx" secondAttribute="bottom" constant="8" id="W5O-io-IvU"/>
+                            <constraint firstItem="Mz6-ay-rTx" firstAttribute="centerX" secondItem="qmW-tf-B18" secondAttribute="centerX" id="dL3-1E-fXX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wYG-Bg-xss">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="hnC-k0-kY6">
@@ -118,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPg-ST-oMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.3333333333334" y="736.50666666666666"/>
+            <point key="canvasLocation" x="1021" y="736"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9fx-ex-lxR">
