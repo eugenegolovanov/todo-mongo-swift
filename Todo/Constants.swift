@@ -21,8 +21,6 @@ let URL_SIGNUP = URL_API + "/users"
 
 
 
-
-
 //--------------TOKEN-------------------//
 
 let KEY_TOKEN = "Auth"

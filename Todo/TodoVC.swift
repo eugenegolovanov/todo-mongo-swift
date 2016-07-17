@@ -54,7 +54,7 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         spinner.startAnimating()
 
         
-        ////GET Todos////
+        ////GET /todos
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
             API.get(URL_TODOS, attachToken: true, alternateToken: token, completed: { (response) in
                 if response.success == true {
