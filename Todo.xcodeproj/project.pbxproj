@@ -17,6 +17,7 @@
 		44F58E931D39FCF0000B8AAF /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F58E921D39FCF0000B8AAF /* Todo.swift */; };
 		44F58E971D3A2069000B8AAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F58E961D3A2069000B8AAF /* Constants.swift */; };
 		44F58E9D1D3A4729000B8AAF /* AddTodoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F58E9C1D3A4729000B8AAF /* AddTodoVC.swift */; };
+		44F58E9F1D3B8663000B8AAF /* EditTodoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F58E9E1D3B8663000B8AAF /* EditTodoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		44F58E921D39FCF0000B8AAF /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		44F58E961D3A2069000B8AAF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		44F58E9C1D3A4729000B8AAF /* AddTodoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodoVC.swift; sourceTree = "<group>"; };
+		44F58E9E1D3B8663000B8AAF /* EditTodoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +92,18 @@
 			children = (
 				44E93C1D1D382B1B004AE96C /* LoginVC.swift */,
 				44E93C0D1D382AFF004AE96C /* TodoVC.swift */,
-				44F58E9C1D3A4729000B8AAF /* AddTodoVC.swift */,
+				44F58EA01D3B8B06000B8AAF /* SingleTodo */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		44F58EA01D3B8B06000B8AAF /* SingleTodo */ = {
+			isa = PBXGroup;
+			children = (
+				44F58E9C1D3A4729000B8AAF /* AddTodoVC.swift */,
+				44F58E9E1D3B8663000B8AAF /* EditTodoVC.swift */,
+			);
+			name = SingleTodo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44F58E9F1D3B8663000B8AAF /* EditTodoVC.swift in Sources */,
 				44E93C0E1D382AFF004AE96C /* TodoVC.swift in Sources */,
 				44F58E9D1D3A4729000B8AAF /* AddTodoVC.swift in Sources */,
 				44E93C0C1D382AFF004AE96C /* AppDelegate.swift in Sources */,

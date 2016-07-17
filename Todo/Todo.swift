@@ -32,12 +32,15 @@ class AllTodos: CustomDebugStringConvertible {
 
 
 class Todo: CustomDebugStringConvertible {
+    
     var data:[String:AnyObject]
+    var id = Int()
     var description:String = ""
     var completed = false
     
     init(data:[String:AnyObject]) {
         self.data = data
+        self.id = (self.data["id"] as? Int ?? 0)
         self.description = (self.data["description"] as? String ?? "")
         self.completed = (self.data["completed"] as? Bool ?? false)
     }

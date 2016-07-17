@@ -135,14 +135,38 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("ident", forIndexPath: indexPath)
         
         let todo = self.todos[indexPath.row]
-        cell.textLabel!.text = todo.description
+        cell.textLabel!.text = "id:\(todo.id)  \(todo.description)"
         cell.detailTextLabel!.text = todo.completed.description ?? "none"
-        // Configure the cell...
         
         return cell
     }
 
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedTodo = self.todos[indexPath.row]
+        print("Selected todo:\(selectedTodo)")
+        performSegueWithIdentifier("editTodo", sender: selectedTodo)
+    }
+    
+    
+    //--------------------------------------------------------------------------------------------------
+    // MARK: - Segue
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editTodo" {
+            guard let selectedTodo = sender as? Todo else {
+                print("problem with selected todo")
+                return
+            }
+            guard let destVC = segue.destinationViewController as? EditTodoVC else {
+                print("problem with EditTodoVC")
+                return
+            }
+            destVC.selectedTodo = selectedTodo
+            
+            
+        }
+    }
 
 
 }
