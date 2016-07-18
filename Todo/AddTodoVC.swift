@@ -34,6 +34,7 @@ class AddTodoVC: UIViewController, UITextFieldDelegate {
         var descriptionString = ""
         var completed = false
         
+        //Description
         if self.descriptionField.text != "" {
             if let desc = self.descriptionField.text  {
                 descriptionString = desc
@@ -42,6 +43,7 @@ class AddTodoVC: UIViewController, UITextFieldDelegate {
             self.alert(title: "Message is empty", message: "Enter Something")
         }
         
+        //Completed
         if self.completedSegmentCntrl.selectedSegmentIndex == 1 {
             completed = true
         } else {

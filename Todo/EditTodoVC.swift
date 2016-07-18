@@ -50,6 +50,7 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
         var descriptionString = ""
         var completed = false
         
+        //Description
         if self.descriptionField.text != "" {
             if let desc = self.descriptionField.text  {
                 descriptionString = desc
@@ -58,11 +59,19 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
             self.alert(title: "Message is empty", message: "Enter Something")
         }
         
+        //Completed
         if self.completedSegmentCntrl.selectedSegmentIndex == 1 {
             completed = true
         } else {
             completed = false
         }
+        
+        //id
+        guard let selTodo = self.selectedTodo else {print("no id");return}
+        let id = selTodo.id
+        
+        //URL to edit
+        let urlToPut = URL_TODOS + "/\(id)"
         
         
         if descriptionString != "" {
@@ -71,34 +80,38 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
             print("----------------------------------------------------------------------------------")
             print(descriptionString)
             print(completed)
+            print(urlToPut)
             print("----------------------------------------------------------------------------------")
             
-//            let paramsDictionary = ["description":descriptionString, "completed":completed.description ?? "none"]
-//            self.spinner.startAnimating()
-//            
-//            //POST /todos
-//            if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-//                API.post(URL_TODOS, payload: paramsDictionary, attachToken: true, alternateToken: token, completed: { (response) in
-//                    
-//                    if response.success == true {
-//                        print("----------------------------------------------------------------------------------")
-//                        print(response)
-//                        print("----------------------------------------------------------------------------------")
-//                        dispatch_async(dispatch_get_main_queue(), {
-//                            self.spinner.stopAnimating()
-//                            self.descriptionField.text = ""
-//                            self.alert(title: "Success", message: "Todo Posted")
-//                        })
-//                        
-//                    } else {
-//                        dispatch_async(dispatch_get_main_queue(), {
-//                            self.alert(title: "Error posting todo", message: "Err:\(response.error)")
-//                        })
-//                    }
-//                    
-//                })
-//            }
-//            /////
+            
+            
+            
+            let paramsDictionary = ["description":descriptionString, "completed":completed.description ?? "none"]
+            self.spinner.startAnimating()
+            
+            //PUT /todos/:id
+            if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
+                API.put(urlToPut, payload: paramsDictionary, attachToken: true, alternateToken: token, completed: { (response) in
+                    
+                    if response.success == true {
+                        print("----------------------------------------------------------------------------------")
+                        print(response)
+                        print("----------------------------------------------------------------------------------")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.spinner.stopAnimating()
+                            self.descriptionField.text = ""
+                            self.alert(title: "Success", message: "Todo Updated")
+                        })
+                        
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.alert(title: "Error updating todo", message: "Err:\(response.error)")
+                        })
+                    }
+                    
+                })
+            }
+            ///
             
             
             

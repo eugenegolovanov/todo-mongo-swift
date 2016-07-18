@@ -192,8 +192,8 @@ public class API {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 30
 
-        //POST
-        if method == "POST" {
+        //POST PUT
+        if method == "POST" || method == "PUT" {
             if let params = content {
                 
                 do {
@@ -205,7 +205,8 @@ public class API {
                     print("Catch all error: \(error)")
                 }
             }
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+                (data:NSData?, response:NSURLResponse?, error:NSError?) in
                 
                 guard let httpResponse = response as? NSHTTPURLResponse else{print("No post Response"); return}
                 //OBJ fo response
@@ -246,16 +247,7 @@ public class API {
                 } else {
                     guard let data = data else {print("error getting data"); return}
                     
-
-                    
                     do {
-//                        //OBJ fo response
-//                        var obj = Dictionary<String,AnyObject>()
-//                        obj["code"] = httpResponse.statusCode
-//                        obj["success"] = API.statusSuccessChecker(httpResponse.statusCode)
-
-                        
-                        
                             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                             print("\nJSON:\(json)")
                             
@@ -267,7 +259,6 @@ public class API {
                             else {
                                 obj = json as! Dictionary<String, AnyObject>
                             }
-
                         
                         completed(response: APIResponse(request: request, duration: NSDate().timeIntervalSinceDate(startTime), payload: obj, error: error))
                         
