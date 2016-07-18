@@ -196,7 +196,8 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             self.deleteTodo(id: self.todos[indexPath.row].id)
             self.todos.removeAtIndex(indexPath.row)
-            tableView.reloadData()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+
         }
     }
     
