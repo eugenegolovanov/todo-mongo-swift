@@ -385,7 +385,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onPostTodoAction:" destination="SKg-wn-J2P" eventType="touchUpInside" id="YFf-YN-6zZ"/>
+                                    <action selector="onPutTodoAction:" destination="SKg-wn-J2P" eventType="touchUpInside" id="Akn-yP-eYJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="edit todo and PUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-hu-hvZ">

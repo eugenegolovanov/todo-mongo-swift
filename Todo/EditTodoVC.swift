@@ -45,7 +45,7 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
     //--------------------------------------------------------------------------------------------------
     //MARK: - Actions
     
-    @IBAction func onPostTodoAction(sender: UIButton) {
+    @IBAction func onPutTodoAction(sender: UIButton) {
         
         var descriptionString = ""
         var completed = false
@@ -105,6 +105,7 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         dispatch_async(dispatch_get_main_queue(), {
+                            self.spinner.stopAnimating()
                             self.alert(title: "Error updating todo", message: "Err:\(response.error)")
                         })
                     }

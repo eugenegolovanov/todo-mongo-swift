@@ -192,8 +192,8 @@ public class API {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 30
 
-        //POST PUT
-        if method == "POST" || method == "PUT" {
+        //POST //PUT //DELETE
+        if method == "POST" || method == "PUT" || method == "DELETE" {
             if let params = content {
                 
                 do {
@@ -295,6 +295,11 @@ public class API {
              }
         else if code == 201 {
                 print("SUCCESS.........201")
+                success = true
+             }
+                
+        else if code == 204 {
+                print("SUCCESS BUT NOTHING TO SEND.........204")
                 success = true
              }
         

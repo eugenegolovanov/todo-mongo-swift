@@ -94,6 +94,52 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         ////////////////////
     }
+    
+    
+    
+    
+    func deleteTodo(id id:Int) {
+        print("DELETING ID: \(id)")
+        
+        //URL to edit
+        let urlToDelete = URL_TODOS + "/\(id)"
+        
+        
+        print("----------------------------------------------------------------------------------")
+        print(urlToDelete)
+        print("----------------------------------------------------------------------------------")
+
+        self.spinner.startAnimating()
+        
+        
+        
+        //DELETE    /todos/:id
+        if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
+            API.delete(urlToDelete, attachToken: true, alternateToken: token, completed: { (response) in
+                
+                if response.success == true {
+                    print("----------------------------------------------------------------------------------")
+                    print(response)
+                    print("----------------------------------------------------------------------------------")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.spinner.stopAnimating()
+                        self.alert(title: "Success", message: "Todo Deleted")
+                    })
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.spinner.stopAnimating()
+                        self.alert(title: "Error Deleting todo", message: "Err:\(response.error)")
+                    })
+                }
+                
+            })
+        }
+        ///
+        
+        
+
+    }
 
     
     
@@ -145,6 +191,30 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print("Selected todo:\(selectedTodo)")
         performSegueWithIdentifier("editTodo", sender: selectedTodo)
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            self.deleteTodo(id: self.todos[indexPath.row].id)
+            self.todos.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+        }
+    }
+    
+    
+    
+    //--------------------------------------------------------------------------------------------------
+    //MARK: - Helper
+    
+    
+    func alert(title title:String, message:String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     
     //--------------------------------------------------------------------------------------------------
