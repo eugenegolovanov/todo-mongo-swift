@@ -39,7 +39,7 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print("Token:\n\(token)")
             self.getAllTodosResponse()
         } else {
-            performSegueWithIdentifier("loginSegue", sender: self)
+            self.performSegueWithIdentifier("loginSegue", sender: self)
         }
         
         
@@ -57,6 +57,8 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ////GET /todos
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
             API.get(URL_TODOS, attachToken: true, alternateToken: token, completed: { (response) in
+                
+                
                 if response.success == true {
                     
                     print("-------------RESPONSE----------------------")
@@ -70,19 +72,15 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     print("------------------------------------------")
                     
                     dispatch_async(dispatch_get_main_queue(),{
-//                        let alert = UIAlertController(
-//                            title: "Got All TODOS",
-//                            message: "I Have All TODOS",
-//                            preferredStyle: .Alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//                        self.presentViewController(alert, animated: true, completion: nil)
-                        
                         self.todoTableView.reloadData()
                         self.spinner.stopAnimating()
                     })
                     
                 } else {
+                    deleteToken()
                     self.spinner.stopAnimating()
+                    self.performSegueWithIdentifier("loginSegue", sender: self)
+
                     let alert = UIAlertController(
                         title: "Failure",
                         message: "Response code:\(response.code)",

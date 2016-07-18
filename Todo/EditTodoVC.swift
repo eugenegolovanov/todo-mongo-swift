@@ -27,7 +27,7 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
         descriptionField.delegate = self
         
         
-        //Setting values
+        //SETTING Existing Todo Values
         guard let selTodo = self.selectedTodo else {
             print("broblem with init selected todo")
             return

@@ -207,10 +207,7 @@ public class API {
             }
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
                 
-                guard let httpResponse = response as? NSHTTPURLResponse else{
-                    print("No Response")
-                    return
-                }
+                guard let httpResponse = response as? NSHTTPURLResponse else{print("No post Response"); return}
                 //OBJ fo response
                 var obj = Dictionary<String,AnyObject>()
                 obj["code"] = httpResponse.statusCode
@@ -233,6 +230,13 @@ public class API {
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
                 (data:NSData?, response:NSURLResponse?, error:NSError?) in
                 
+                
+                guard let httpResponse = response as? NSHTTPURLResponse else{print("No get Response"); return}
+                //OBJ fo response
+                var obj = Dictionary<String,AnyObject>()
+                obj["code"] = httpResponse.statusCode
+                obj["success"] = API.statusSuccessChecker(httpResponse.statusCode)
+
                 //in case of error
                 if error != nil {
                     print("shit err")
@@ -245,14 +249,10 @@ public class API {
 
                     
                     do {
-                        guard let httpResponse = response as? NSHTTPURLResponse else{
-                            print("No Response")
-                            return
-                        }
-                        //OBJ fo response
-                        var obj = Dictionary<String,AnyObject>()
-                        obj["code"] = httpResponse.statusCode
-                        obj["success"] = API.statusSuccessChecker(httpResponse.statusCode)
+//                        //OBJ fo response
+//                        var obj = Dictionary<String,AnyObject>()
+//                        obj["code"] = httpResponse.statusCode
+//                        obj["success"] = API.statusSuccessChecker(httpResponse.statusCode)
 
                         
                         
@@ -273,6 +273,8 @@ public class API {
                         
                     } catch {
                         print("ERROR:\(error)")
+                        completed(response: APIResponse(request: request, duration: NSDate().timeIntervalSinceDate(startTime), payload: obj, error: nil))
+
                     }
                 }
             
