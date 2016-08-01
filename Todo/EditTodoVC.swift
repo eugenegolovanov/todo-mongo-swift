@@ -91,7 +91,7 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
             
             //PUT /todos/:id
             if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-                API.put(urlToPut, payload: paramsDictionary, attachToken: true, alternateToken: token, completed: { (response) in
+                API.put(urlToPut, payload: paramsDictionary, userToken: token, completed: { (response) in
                     
                     if response.success == true {
                         print("----------------------------------------------------------------------------------")

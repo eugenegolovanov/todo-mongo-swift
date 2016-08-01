@@ -56,7 +56,7 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         ////GET /todos
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-            API.get(URL_TODOS, attachToken: true, alternateToken: token, completed: { (response) in
+            API.get(URL_TODOS, userToken: token, completed: { (response) in
                 
                 
                 if response.success == true {
@@ -115,7 +115,7 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //DELETE    /todos/:id
         if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-            API.delete(urlToDelete, attachToken: true, alternateToken: token, completed: { (response) in
+            API.delete(urlToDelete, userToken: token, completed: { (response) in
                 
                 if response.success == true {
                     print("----------------------------------------------------------------------------------")

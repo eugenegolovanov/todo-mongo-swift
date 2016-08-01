@@ -120,23 +120,23 @@ public class API {
     
     
     //Get
-    public class func get(url:AnyObject, attachToken:Bool = true, alternateToken:String? = nil, completed: (response:APIResponse) -> Void) {
-        self.createURLRequest(url, method: "GET", attachToken: attachToken, alternateToken: alternateToken, content: nil, completed: completed)
+    public class func get(url:AnyObject, userToken:String?, completed: (response:APIResponse) -> Void) {
+        self.createURLRequest(url, method: "GET", userToken: userToken, content: nil, completed: completed)
     }
     
     //Post
-    public class func post(url:AnyObject, payload:[String:AnyObject]? = nil, attachToken:Bool = true, alternateToken:String? = nil, completed: (response:APIResponse) -> Void) {
-        self.createURLRequest(url, method: "POST", attachToken: attachToken, alternateToken: alternateToken, content: payload, completed: completed)
+    public class func post(url:AnyObject, payload:[String:AnyObject]? = nil, userToken:String?, completed: (response:APIResponse) -> Void) {
+        self.createURLRequest(url, method: "POST", userToken: userToken, content: payload, completed: completed)
     }
     
     //Put
-    public class func put(url:AnyObject, payload:[String:AnyObject]? = nil, attachToken:Bool = true, alternateToken:String? = nil, completed: (response:APIResponse) -> Void) {
-        self.createURLRequest(url, method: "PUT", attachToken: attachToken, alternateToken: alternateToken, content: payload, completed: completed)
+    public class func put(url:AnyObject, payload:[String:AnyObject]? = nil, userToken:String?, completed: (response:APIResponse) -> Void) {
+        self.createURLRequest(url, method: "PUT", userToken: userToken, content: payload, completed: completed)
     }
     
     //Delete
-    public class func delete(url:AnyObject, attachToken:Bool = true, alternateToken:String? = nil, completed: (response:APIResponse) -> Void) {
-        self.createURLRequest(url, method: "DELETE", attachToken: attachToken, alternateToken: alternateToken, content: nil, completed: completed)
+    public class func delete(url:AnyObject, userToken:String?, completed: (response:APIResponse) -> Void) {
+        self.createURLRequest(url, method: "DELETE", userToken: userToken, content: nil, completed: completed)
     }
     
     
@@ -147,7 +147,7 @@ public class API {
     
     
     
-    private class func createURLRequest(u:AnyObject, method:String, attachToken:Bool, alternateToken:String? = nil, content:[String:AnyObject]? = nil, completed: (response:APIResponse) -> Void) -> Void {
+    private class func createURLRequest(u:AnyObject, method:String, userToken:String?, content:[String:AnyObject]? = nil, completed: (response:APIResponse) -> Void) -> Void {
         
         let startTime = NSDate()
         
@@ -172,11 +172,7 @@ public class API {
         
         
         //If Token
-        if attachToken == true {
-            guard let token = alternateToken else {
-                print("Token Problem")
-                return
-            }
+        if let token = userToken  {
             print("\nAPI \(method) \(url) with token \(token)")
             request.addValue(token, forHTTPHeaderField: "Auth")
         }

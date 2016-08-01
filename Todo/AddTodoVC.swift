@@ -64,7 +64,7 @@ class AddTodoVC: UIViewController, UITextFieldDelegate {
             
             //POST /todos
             if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-                API.post(URL_TODOS, payload: paramsDictionary, attachToken: true, alternateToken: token, completed: { (response) in
+                API.post(URL_TODOS, payload: paramsDictionary, userToken: token, completed: { (response) in
 
                     if response.success == true {
                         print("----------------------------------------------------------------------------------")

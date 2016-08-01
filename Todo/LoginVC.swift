@@ -60,7 +60,7 @@ class LoginVC: UIViewController {
             
             
             ////-LOGIN-//// POST /users/login
-            API.post(URL_LOGIN, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
+            API.post(URL_LOGIN, payload: paramsDictionary, userToken: nil, completed: { (response) in
                 
                 print("----------------------------------------------------------------------------------")
                 if let token = response.dataString {
@@ -82,7 +82,7 @@ class LoginVC: UIViewController {
             
             
             ////-SIGNUP-//// POST /users
-            API.post(URL_SIGNUP, payload: paramsDictionary, attachToken: false, alternateToken: nil, completed: { (response) in
+            API.post(URL_SIGNUP, payload: paramsDictionary, userToken: nil, completed: { (response) in
                 
                 print("----------------------------------------------------------------------------------")
                 print(response)
