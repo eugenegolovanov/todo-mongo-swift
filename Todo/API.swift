@@ -87,7 +87,7 @@ public class APIResponse: CustomDebugStringConvertible {
             descr += " error=\(err)"
         }
         
-//        if let r = self.request, t = r.valueForHTTPHeaderField("Auth") {
+//        if let r = self.request, t = r.valueForHTTPHeaderField("x-access-token") {
 //            descr += " token=\(t)"
 //        }
         
@@ -174,7 +174,7 @@ public class API {
         //If Token
         if let token = userToken  {
             print("\nAPI \(method) \(url) with token \(token)")
-            request.addValue(token, forHTTPHeaderField: "Auth")
+            request.addValue(token, forHTTPHeaderField: "x-access-token")
         }
         
 
@@ -211,7 +211,7 @@ public class API {
                 obj["success"] = API.statusSuccessChecker(httpResponse.statusCode)
                 
                 //Token If exists
-                if let token = httpResponse.allHeaderFields["Auth"] {
+                if let token = httpResponse.allHeaderFields["x-access-token"] {
                     obj["data"] = token as? String
                 }
 

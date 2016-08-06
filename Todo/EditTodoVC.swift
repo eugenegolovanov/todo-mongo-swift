@@ -86,12 +86,20 @@ class EditTodoVC: UIViewController, UITextFieldDelegate {
             
             
             
-            let paramsDictionary = ["description":descriptionString, "completed":completed.description ?? "none"]
+//            let paramsDictionary = ["description":descriptionString, "completed":completed.description ?? "none"]
+//            let paramsDictionary = ["description":descriptionString,
+//                                    "completed":completed.description ?? "none",
+//                                    "priority":0]
+            let paramsDictionary = ["description":descriptionString,
+                                    "completed":completed ?? false,
+                                    "priority":0]
+
+
             self.spinner.startAnimating()
             
             //PUT /todos/:id
             if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-                API.put(urlToPut, payload: paramsDictionary, userToken: token, completed: { (response) in
+                API.put(urlToPut, payload: paramsDictionary as? [String : AnyObject], userToken: token, completed: { (response) in
                     
                     if response.success == true {
                         print("----------------------------------------------------------------------------------")

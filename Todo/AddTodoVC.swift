@@ -59,12 +59,18 @@ class AddTodoVC: UIViewController, UITextFieldDelegate {
             print(completed)
             print("----------------------------------------------------------------------------------")
             
-            let paramsDictionary = ["description":descriptionString, "completed":completed.description ?? "none"]
+//            let paramsDictionary = ["description":descriptionString,
+//                                    "completed":completed.description ?? "none",
+//                                    "priority":0]
+            let paramsDictionary = ["description":descriptionString,
+                                    "completed":completed ?? false,
+                                    "priority":0]
+
             self.spinner.startAnimating()
             
             //POST /todos
             if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
-                API.post(URL_TODOS, payload: paramsDictionary, userToken: token, completed: { (response) in
+                API.post(URL_TODOS, payload: paramsDictionary as? [String : AnyObject], userToken: token, completed: { (response) in
 
                     if response.success == true {
                         print("----------------------------------------------------------------------------------")
@@ -77,7 +83,9 @@ class AddTodoVC: UIViewController, UITextFieldDelegate {
                         })
                         
                     } else {
+                        
                         dispatch_async(dispatch_get_main_queue(), {
+                            self.spinner.stopAnimating()
                             self.alert(title: "Error posting todo", message: "Err:\(response.error)")
                         })
                     }

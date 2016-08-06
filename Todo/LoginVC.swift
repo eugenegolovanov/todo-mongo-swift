@@ -62,15 +62,17 @@ class LoginVC: UIViewController {
             ////-LOGIN-//// POST /users/login
             API.post(URL_LOGIN, payload: paramsDictionary, userToken: nil, completed: { (response) in
                 
-                print("----------------------------------------------------------------------------------")
-                if let token = response.dataString {
-                    print("token: \(token)")
-                    
-                    saveToken(token: token)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    
+                if response.success == true {
+                    print("----------------------------------------------------------------------------------")
+                    if let token = response.dataString {
+                        print("token: \(token)")
+                        
+                        saveToken(token: token)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        
+                    }
+                    print("----------------------------------------------------------------------------------")
                 }
-                print("----------------------------------------------------------------------------------")
 
             })
             ////-END OF LOGIN-////
@@ -99,6 +101,8 @@ class LoginVC: UIViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     })
+                } else {
+                    print("Shit No Response")
                 }
             })
             ////-END OF SIGNUP-////
