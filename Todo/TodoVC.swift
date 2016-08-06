@@ -149,11 +149,44 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func onLogoutButton(sender: UIButton) {
         
         
+        print("----------------------------------------------------------------------------------")
+        print("--URL:--  \(URL_LOGIN)")
+        print("----------------------------------------------------------------------------------")
+        
+        self.spinner.startAnimating()
+
         
         
+        //DELETE    /users/login
+        if let token = NSUserDefaults.standardUserDefaults().stringForKey(KEY_TOKEN) {
+            API.delete(URL_LOGIN, userToken: token, completed: { (response) in
+                
+                if response.success == true {
+                    print("----------------------------------------------------------------------------------")
+                    print(response)
+                    print("----------------------------------------------------------------------------------")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.spinner.stopAnimating()
+                        deleteToken()
+                        self.performSegueWithIdentifier("loginSegue", sender: self)
+//                        self.alert(title: "Success", message: "Logout")
+
+
+                    })
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.spinner.stopAnimating()
+                        self.alert(title: "Error Logout", message: "Err:\(response.error)")
+                    })
+                }
+                
+            })
+        }
+        ///
+
         
-        deleteToken()
-        performSegueWithIdentifier("loginSegue", sender: self)
+        
     }
     
     
