@@ -98,7 +98,7 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    func deleteTodo(id id:Int) {
+    func deleteTodo(id id:String) {
         print("DELETING ID: \(id)")
         
         //URL to edit
@@ -147,6 +147,11 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: - Actions
 
     @IBAction func onLogoutButton(sender: UIButton) {
+        
+        
+        
+        
+        
         deleteToken()
         performSegueWithIdentifier("loginSegue", sender: self)
     }
@@ -195,12 +200,12 @@ class TodoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.Delete {
-//            self.deleteTodo(id: self.todos[indexPath.row].id)
-//            self.todos.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//
-//        }
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            self.deleteTodo(id: self.todos[indexPath.row].id)
+            self.todos.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+
+        }
     }
     
     
