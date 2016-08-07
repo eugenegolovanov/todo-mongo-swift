@@ -48,8 +48,8 @@ class LoginVC: UIViewController {
     
     @IBAction func onLoginButton(sender: UIButton) {
         
-        guard let emailStr    = self.emailField.text else {print("No Email"); return}
-        guard let passwordStr = self.passwordField.text else {print("No Password"); return}
+        guard let emailStr    = self.emailField.text?.lowercaseString else {print("No Email"); return}
+        guard let passwordStr = self.passwordField.text?.lowercaseString else {print("No Password"); return}
         print("EMAIL:\(emailStr)   PASSWORD:\(passwordStr)")
         let paramsDictionary = ["email":emailStr, "password":passwordStr]
         
